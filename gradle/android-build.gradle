@@ -1,0 +1,34 @@
+import com.ginzo.spacelaunchx.Conf
+import com.ginzo.spacelaunchx.Libs
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
+
+android {
+    compileSdkVersion Conf.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Conf.minSdkVersion
+        targetSdkVersion Conf.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+}
+
+allOpen {
+    annotation('com.ginzo.commons.feature_commons.test.OpenClass')
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Libs.kotlin.stdlib
+
+    androidTestImplementation Libs.androidx.test.runner
+}
