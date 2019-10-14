@@ -1,0 +1,26 @@
+import com.ginzo.spacelaunchx.Libs
+
+apply from: "$rootProject.projectDir/gradle/android-build.gradle"
+
+dependencies {
+    implementation project(':core:remote')
+
+    implementation Libs.dagger.core
+    kapt Libs.dagger.compiler
+
+    implementation Libs.retrofit.core
+
+    implementation Libs.arrow.core
+
+    implementation Libs.rxjava2.core
+
+    implementation Libs.threeten
+
+    implementation Libs.moshi.core
+    kapt Libs.moshi.codegen
+
+    testImplementation Libs.junit
+    testImplementation Libs.mockito.core
+    testImplementation Libs.mockito.kotlin
+    testImplementation Libs.hamcrest
+}
