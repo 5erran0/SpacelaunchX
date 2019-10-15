@@ -1,7 +1,7 @@
-package com.ginzo.spacelaunchx
+package com.ginzo.spacex_presentation
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
 

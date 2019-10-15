@@ -1,6 +1,8 @@
 import com.ginzo.spacelaunchx.Libs
 
 apply from: "$rootProject.projectDir/gradle/android-build.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 
 android {
@@ -10,6 +12,8 @@ android {
 }
 
 dependencies {
+    implementation project(':design')
+
     implementation project(':spacex-info-domain')
 
     implementation Libs.androidx.appCompat
@@ -22,6 +26,8 @@ dependencies {
     implementation Libs.coreKtx
 
     implementation Libs.dagger.core
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt Libs.dagger.compiler
 
     implementation Libs.arrow.core
