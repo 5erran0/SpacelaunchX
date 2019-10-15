@@ -1,0 +1,8 @@
+import com.ginzo.spacelaunchx.Libs
+
+apply from: "$rootProject.projectDir/gradle/android-build.gradle"
+
+dependencies {
+    implementation Libs.androidx.appCompat
+    implementation Libs.androidx.recyclerview
+}
