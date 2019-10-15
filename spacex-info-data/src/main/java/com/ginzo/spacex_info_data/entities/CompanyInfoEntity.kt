@@ -1,5 +1,6 @@
 package com.ginzo.spacex_info_data.entities
 
+import com.ginzo.spacex_info_domain.entities.CompanyInfo
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -16,4 +17,8 @@ data class CompanyInfoEntity(
   val launchSite: Int,
   @Json(name = "valuation")
   val valuation: Int
-)
+) {
+  fun toDomain(): CompanyInfo {
+    return CompanyInfo(companyName, founder, foundedYear, numEmployers, launchSite, valuation)
+  }
+}
