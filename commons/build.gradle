@@ -1,0 +1,14 @@
+import com.ginzo.spacelaunchx.Libs
+
+apply from: "$rootProject.projectDir/gradle/android-build.gradle"
+
+dependencies {
+    implementation Libs.androidx.appCompat
+    implementation Libs.androidx.recyclerview
+
+    implementation Libs.dagger.core
+    kapt Libs.dagger.compiler
+
+    implementation Libs.rxjava2.android
+    implementation Libs.rxjava2.core
+}

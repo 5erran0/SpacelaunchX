@@ -1,4 +1,6 @@
-include ':app', ':design'
+include ':app'
+include ':design'
+include ':commons'
 include ':spacex-info-data'
 include ':spacex-info-domain'
 include ':spacex-presentation'
