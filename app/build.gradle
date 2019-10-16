@@ -41,16 +41,49 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':spacex-info-domain')
 
-    implementation project(':design')
-    
-    implementation Libs.kotlin.stdlib
+    implementation Libs.androidx.appCompat
+    implementation Libs.androidx.recyclerview
+    implementation Libs.androidx.lifecycle
+
+    implementation Libs.constrainLayout
+    implementation Libs.google.material
 
     implementation Libs.coreKtx
 
-    implementation Libs.constrainLayout
+    implementation Libs.dagger.core
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt Libs.dagger.compiler
 
-    implementation Libs.androidx.appCompat
-    implementation Libs.google.material
+    implementation Libs.arrow.core
+
+    implementation Libs.threeten
+
+    implementation Libs.rxjava2.relay
+    implementation Libs.rxjava2.core
+    implementation Libs.rxjava2.android
+    implementation Libs.rxjava2.relay
+    implementation Libs.rxjava2.bindings.core
+    implementation Libs.rxjava2.bindings.recyclerview
+
+    implementation Libs.retrofit.core
+
+    implementation Libs.glide.core
+    kapt Libs.glide.compiler
+
+    testImplementation Libs.junit
+    testImplementation Libs.mockito.core
+    testImplementation Libs.mockito.kotlin
+    testImplementation Libs.hamcrest
+
+    debugImplementation Libs.mockito.kotlin
+
+    androidTestImplementation Libs.androidx.test.rules
+    androidTestImplementation Libs.androidx.test.core
+    androidTestImplementation Libs.androidx.test.espresso.core
+    androidTestImplementation Libs.androidx.test.espresso.contrib
+    androidTestImplementation Libs.mockito.android
+    androidTestImplementation Libs.mockito.kotlin
 }
