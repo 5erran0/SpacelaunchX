@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
-abstract class SpaceXInfoDataModule {
+abstract class DataModule {
 
   @Module
   companion object {
