@@ -3,7 +3,7 @@ import com.ginzo.spacelaunchx.Libs
 apply from: "$rootProject.projectDir/gradle/android-build.gradle"
 
 dependencies {
-    implementation project(':core:remote')
+    implementation project(':remote')
     implementation project(':domain')
 
     implementation Libs.dagger.core
