@@ -7,7 +7,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
-import com.ginzo.commons.feature_commons.view.bindView
+import com.ginzo.commons.view.bindView
 import com.ginzo.spacelaunchx.R
 import com.ginzo.spacelaunchx.main.di.inject
 import com.ginzo.spacex_info_domain.entities.CompanyInfo

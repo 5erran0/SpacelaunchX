@@ -1,7 +1,7 @@
 package com.ginzo.spacex_info_data
 
-import com.ginzo.spacex_info_data.api.SpaceXInfoRestApi
-import com.ginzo.spacex_info_data.repositories.SpaceXInfoDataRepository
+import com.ginzo.spacex_info_data.company.api.CompanyRestApi
+import com.ginzo.spacex_info_data.company.repositories.CompanyDataRepository
 import com.ginzo.spacex_info_domain.repository.SpaceXInfoRepository
 import dagger.Binds
 import dagger.Module
@@ -17,11 +17,11 @@ abstract class DataModule {
     @Provides
     @Singleton
     @JvmStatic
-    internal fun providesSpaceXInfoRestApi(retrofit: Retrofit): SpaceXInfoRestApi {
-      return retrofit.create(SpaceXInfoRestApi::class.java)
+    internal fun providesSpaceXInfoRestApi(retrofit: Retrofit): CompanyRestApi {
+      return retrofit.create(CompanyRestApi::class.java)
     }
   }
 
   @Binds
-  abstract fun providesSpaceXInfoDataRepository(repository: SpaceXInfoDataRepository): SpaceXInfoRepository
+  abstract fun providesSpaceXInfoDataRepository(repository: CompanyDataRepository): SpaceXInfoRepository
 }

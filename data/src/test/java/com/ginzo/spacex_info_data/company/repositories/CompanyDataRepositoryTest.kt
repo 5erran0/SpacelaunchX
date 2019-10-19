@@ -1,4 +1,4 @@
-package com.ginzo.spacex_info_data.repositories
+package com.ginzo.spacex_info_data.company.repositories
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -6,11 +6,11 @@ import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import org.junit.After
 import org.junit.Test
 
-class SpaceXInfoDataRepositoryTest {
+class CompanyDataRepositoryTest {
 
-  private val apiRepository: SpaceXInfoApiRepository = mock()
+  private val apiRepository: CompanyApiRepository = mock()
 
-  private val dataRepository = SpaceXInfoDataRepository(apiRepository)
+  private val dataRepository = CompanyDataRepository(apiRepository)
 
   @After
   fun tearDown() {

@@ -1,12 +1,12 @@
-package com.ginzo.spacex_info_data.api
+package com.ginzo.spacex_info_data.company.api
 
-import com.ginzo.spacex_info_data.entities.CompanyInfoEntity
-import com.ginzo.spacex_info_data.entities.LaunchEntity
+import com.ginzo.spacex_info_data.company.entities.CompanyInfoEntity
+import com.ginzo.spacex_info_data.company.entities.LaunchEntity
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface SpaceXInfoRestApi {
+interface CompanyRestApi {
   @GET("info")
   fun getCompanyInfo(): Single<Response<CompanyInfoEntity>>
 

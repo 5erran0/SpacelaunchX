@@ -2,7 +2,7 @@ package com.ginzo.spacelaunchx.main
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.ginzo.commons.feature_commons.test.OpenClass
+import com.ginzo.commons.test.OpenClass
 import com.ginzo.spacelaunchx.main.dtos.SpaceXInformationDTO
 import com.ginzo.spacex_info_domain.usecases.GetCompanyInfoUseCase
 import io.reactivex.Scheduler

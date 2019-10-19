@@ -1,4 +1,4 @@
-package com.ginzo.spacex_info_data.entities
+package com.ginzo.spacex_info_data.company.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

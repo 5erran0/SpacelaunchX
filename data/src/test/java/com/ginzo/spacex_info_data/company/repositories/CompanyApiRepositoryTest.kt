@@ -1,20 +1,27 @@
-package com.ginzo.spacex_info_data.repositories
+package com.ginzo.spacex_info_data.company.repositories
 
 import arrow.core.Either
-import com.ginzo.spacex_info_data.api.SpaceXInfoRestApi
-import com.ginzo.spacex_info_data.entities.CompanyInfoEntity
+import com.ginzo.spacex_info_data.company.api.CompanyRestApi
+import com.ginzo.spacex_info_data.company.entities.CompanyInfoEntity
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Test
 import retrofit2.Response
 
-class SpaceXInfoApiRepositoryTest {
+class CompanyApiRepositoryTest {
 
-  private val restApi: SpaceXInfoRestApi = mock()
-  private val companyInfoEntity = CompanyInfoEntity("tesla", "elon musk", 2000, 3, 3, 2000000)
+  private val restApi: CompanyRestApi = mock()
+  private val companyInfoEntity = CompanyInfoEntity(
+    "tesla",
+    "elon musk",
+    2000,
+    3,
+    3,
+    2000000
+  )
 
-  private val apiRepository = SpaceXInfoApiRepository(restApi)
+  private val apiRepository = CompanyApiRepository(restApi)
 
   @After
   fun tearDown() {

@@ -23,7 +23,7 @@ android {
 }
 
 allOpen {
-    annotation('com.ginzo.commons.feature_commons.test.OpenClass')
+    annotation('com.ginzo.commons.test.OpenClass')
 }
 
 dependencies {

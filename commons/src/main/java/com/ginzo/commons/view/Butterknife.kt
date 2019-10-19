@@ -1,4 +1,4 @@
-package com.ginzo.commons.feature_commons.view
+package com.ginzo.commons.view
 
 // Extracted from https://github.com/rubengees/kotterknife/blob/master/kotterknife/src/main/kotlin/kotterknife/KotterKnife.kt
 import android.app.Activity

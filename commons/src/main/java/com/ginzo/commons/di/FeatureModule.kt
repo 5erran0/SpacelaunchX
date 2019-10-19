@@ -1,4 +1,4 @@
-package com.ginzo.commons.feature_commons.di
+package com.ginzo.commons.di
 
 import dagger.Module
 import dagger.Provides
