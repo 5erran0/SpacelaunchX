@@ -1,6 +1,7 @@
 package com.ginzo.spacex_info_data.repositories
 
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import org.junit.After
 import org.junit.Test
@@ -13,13 +14,13 @@ class SpaceXInfoDataRepositoryTest {
 
   @After
   fun tearDown() {
-    verifyNoMoreInteractions(dataRepository)
+    verifyNoMoreInteractions(apiRepository)
   }
 
   @Test
   fun getCompanyInfo() {
     dataRepository.getCompanyInfo()
 
-    verifyNoMoreInteractions(apiRepository)
+    verify(apiRepository).getCompanyInfo()
   }
 }

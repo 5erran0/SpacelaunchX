@@ -5,6 +5,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
 
 android {
     compileSdkVersion Conf.compileSdkVersion
@@ -21,7 +22,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'com.ginzo.spacelaunchx.MockAndroidJUnitRunner'
     }
 
     buildTypes {
@@ -40,8 +41,15 @@ android {
     }
 }
 
+allOpen {
+    annotation('com.ginzo.commons.feature_commons.test.OpenClass')
+}
+
 dependencies {
     implementation project(':domain')
+    implementation project(':data')
+    implementation project(':commons')
+    implementation project(':remote')
 
     implementation Libs.androidx.appCompat
     implementation Libs.androidx.recyclerview
@@ -53,8 +61,6 @@ dependencies {
     implementation Libs.coreKtx
 
     implementation Libs.dagger.core
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt Libs.dagger.compiler
 
     implementation Libs.arrow.core

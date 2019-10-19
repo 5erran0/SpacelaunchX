@@ -6,5 +6,5 @@ data class CompanyInfo(
   val foundedYear: Int,
   val numEmployers: Int,
   val launchSite: Int,
-  val valuation: Int
+  val valuation: Long
 )

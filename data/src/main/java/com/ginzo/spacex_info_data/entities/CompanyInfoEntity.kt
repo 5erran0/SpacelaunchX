@@ -16,7 +16,7 @@ data class CompanyInfoEntity(
   @Json(name = "launch_sites")
   val launchSite: Int,
   @Json(name = "valuation")
-  val valuation: Int
+  val valuation: Long
 ) {
   fun toDomain(): CompanyInfo {
     return CompanyInfo(companyName, founder, foundedYear, numEmployers, launchSite, valuation)

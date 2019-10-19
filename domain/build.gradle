@@ -3,6 +3,8 @@ import com.ginzo.spacelaunchx.Libs
 apply from: "$rootProject.projectDir/gradle/android-build.gradle"
 
 dependencies {
+    implementation project(':commons')
+
     implementation Libs.arrow.core
 
     implementation Libs.dagger.core

@@ -5,6 +5,7 @@ apply from: "$rootProject.projectDir/gradle/android-build.gradle"
 dependencies {
     implementation project(':remote')
     implementation project(':domain')
+    implementation project(':commons')
 
     implementation Libs.dagger.core
     kapt Libs.dagger.compiler
