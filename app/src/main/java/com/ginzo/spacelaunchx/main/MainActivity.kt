@@ -7,8 +7,12 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.ginzo.commons.view.bindView
 import com.ginzo.spacelaunchx.R
+import com.ginzo.spacelaunchx.main.adapter.LaunchesListAdapter
 import com.ginzo.spacelaunchx.main.di.inject
 import com.ginzo.spacex_info_domain.entities.CompanyInfo
 import dagger.BindsInstance
@@ -22,8 +26,11 @@ class MainActivity : AppCompatActivity(), MainView {
 
   private val infoContainer: NestedScrollView by bindView(R.id.main_information_container)
   private val companyInfo: TextView by bindView(R.id.main_company_info)
+  private val launchesList: RecyclerView by bindView(R.id.main_launches)
   private val progressBar: ProgressBar by bindView(R.id.main_progress_bar)
   private val retry: LinearLayout by bindView(R.id.main_retry)
+
+  private lateinit var launchesListAdapter: LaunchesListAdapter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -33,6 +40,14 @@ class MainActivity : AppCompatActivity(), MainView {
 
     retry.setOnClickListener {
       presenter.getSpaceXInformation()
+    }
+
+    launchesListAdapter = launchesList.adapter as? LaunchesListAdapter
+      ?: LaunchesListAdapter(Glide.with(this)) {}
+
+    launchesList.apply {
+      layoutManager = LinearLayoutManager(context)
+      adapter = launchesListAdapter
     }
 
     lifecycle.addObserver(presenter)
@@ -55,6 +70,8 @@ class MainActivity : AppCompatActivity(), MainView {
         retry.visibility = View.GONE
 
         companyInfo.text = formattedCompanyInfoText(state.information.companyInformation)
+
+        launchesListAdapter.launches = state.information.launches
 
         infoContainer.visibility = View.VISIBLE
       }

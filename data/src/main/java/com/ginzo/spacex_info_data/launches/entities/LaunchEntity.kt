@@ -13,10 +13,10 @@ data class LaunchEntity(
   val flightNumber: String,
   @Json(name = "mission_name")
   val missionName: String,
-  @Json(name = "launch_date_local")
+  @Json(name = "launch_date_utc")
   val launchDate: LocalDateTime,
   @Json(name = "launch_success")
-  val launchSuccess: Boolean,
+  val launchSuccess: Boolean?,
   val rocket: RocketEntity,
   val links: LinksEntity
 ) {

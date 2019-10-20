@@ -7,4 +7,13 @@
     <string name="company_info">%1$s was founded by %2$s in %3$d. It has now %4$d employees, %5$d launch sites, and is valued at USD %6$d</string>
 
     <string name="launches_title">Launches</string>
+
+    <string name="rocket_info">Rocket name / type: %1$s / %2$s</string>
+    <string name="launch_date">Launched on %1$s at %2$s</string>
+
+    <string name="days_from_launch">Days from now: %1$d</string>
+    <string name="days_since_launch">Days since now: %1$d</string>
+
+    <string name="successfully">successfully</string>
+    <string name="unsuccessfully">unsuccessfully</string>
 </resources>

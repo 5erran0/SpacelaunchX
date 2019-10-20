@@ -7,13 +7,13 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class LinksEntity(
   @Json(name = "mission_patch")
-  val missionPatch: String,
+  val missionPatch: String?,
   @Json(name = "article_link")
-  val article: String,
+  val article: String?,
   @Json(name = "wikipedia")
-  val wikipedia: String,
+  val wikipedia: String?,
   @Json(name = "video_link")
-  val video: String
+  val video: String?
 ) {
   fun toDomain(): Links {
     return Links(missionPatch, article, wikipedia, video)
