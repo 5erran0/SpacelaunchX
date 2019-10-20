@@ -1,17 +1,16 @@
 package com.ginzo.spacex_info_domain.usecases
 
-import com.ginzo.spacex_info_domain.repository.CompanyRepository
+import com.ginzo.spacex_info_domain.repository.LaunchesRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import org.junit.After
 import org.junit.Test
 
-class GetCompanyInfoUseCaseTest {
+class GetLaunchesUseCaseTest {
+  private val repository: LaunchesRepository = mock()
 
-  private val repository: CompanyRepository = mock()
-
-  private val useCase = GetCompanyInfoUseCase(repository)
+  private val useCase = GetLaunchesUseCase(repository)
 
   @After
   fun tearDown() {
@@ -19,9 +18,9 @@ class GetCompanyInfoUseCaseTest {
   }
 
   @Test
-  fun getCompanyInfo() {
-    useCase.companyInfo()
+  fun getLaunches_ok() {
+    useCase.launches()
 
-    verify(repository).getCompanyInfo()
+    verify(repository).getLaunches()
   }
 }

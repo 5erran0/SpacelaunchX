@@ -1,5 +1,6 @@
-package com.ginzo.spacex_info_data.company.entities
+package com.ginzo.spacex_info_data.launches.entities
 
+import com.ginzo.spacex_info_domain.entities.Rocket
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -11,4 +12,8 @@ data class RocketEntity(
   val name: String,
   @Json(name = "rocket_type")
   val type: String
-)
+) {
+  fun toDomain(): Rocket {
+    return Rocket(id, name, type)
+  }
+}
