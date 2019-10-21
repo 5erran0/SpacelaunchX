@@ -14,6 +14,7 @@ import com.ginzo.commons.view.bindView
 import com.ginzo.spacelaunchx.R
 import com.ginzo.spacelaunchx.main.adapter.LaunchesListAdapter
 import com.ginzo.spacelaunchx.main.di.inject
+import com.ginzo.spacelaunchx.main.dialog.LinksDialog
 import com.ginzo.spacex_info_domain.entities.CompanyInfo
 import dagger.BindsInstance
 import dagger.Subcomponent
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     launchesListAdapter = launchesList.adapter as? LaunchesListAdapter
-      ?: LaunchesListAdapter(Glide.with(this)) {}
+      ?: LaunchesListAdapter(Glide.with(this)) { presenter.onClickLaunchItem(it) }
 
     launchesList.apply {
       layoutManager = LinearLayoutManager(context)
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity(), MainView {
         infoContainer.visibility = View.GONE
         retry.visibility = View.VISIBLE
       }
+
       is MainViewState.Loading -> {
         progressBar.visibility = View.VISIBLE
         infoContainer.visibility = View.GONE
@@ -74,6 +76,13 @@ class MainActivity : AppCompatActivity(), MainView {
         launchesListAdapter.launches = state.information.launches
 
         infoContainer.visibility = View.VISIBLE
+      }
+
+      is MainViewState.ShowLinksDialog -> {
+        if (!state.links.wikipedia.isNullOrEmpty() && !state.links.article.isNullOrEmpty() && !state.links.video.isNullOrEmpty()) {
+          val linksDialog = LinksDialog.newInstance(state.links)
+          linksDialog.show(supportFragmentManager, "LinksDialog")
+        }
       }
     }
   }

@@ -16,4 +16,9 @@
 
     <string name="successfully">successfully</string>
     <string name="unsuccessfully">unsuccessfully</string>
+
+    <string name="check_links">Check some interesting links</string>
+    <string name="wikipedia">Wikipedia</string>
+    <string name="article">Space Article</string>
+    <string name="video">Youtube Video</string>
 </resources>

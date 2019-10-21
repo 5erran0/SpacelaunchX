@@ -157,4 +157,11 @@ class MainPresenterTest {
     verify(getLaunchesUseCase).launches()
     verify(view).render(MainViewState.Error)
   }
+
+  @Test
+  fun showLinksDialog() {
+    presenter.onClickLaunchItem(launches[0].links)
+
+    verify(view).render(MainViewState.ShowLinksDialog(launches[0].links))
+  }
 }

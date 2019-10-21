@@ -7,6 +7,7 @@ import com.ginzo.commons.test.OpenClass
 import com.ginzo.spacelaunchx.main.dtos.SpaceXInformationDTO
 import com.ginzo.spacex_info_domain.entities.CompanyInfo
 import com.ginzo.spacex_info_domain.entities.Launch
+import com.ginzo.spacex_info_domain.entities.Links
 import com.ginzo.spacex_info_domain.usecases.GetCompanyInfoUseCase
 import com.ginzo.spacex_info_domain.usecases.GetLaunchesUseCase
 import io.reactivex.Flowable
@@ -49,5 +50,9 @@ class MainPresenter @Inject constructor(
       .startWith(MainViewState.Loading)
       .subscribe(view::render) { MainViewState.Error }
     )
+  }
+
+  fun onClickLaunchItem(links: Links) {
+    view.render(MainViewState.ShowLinksDialog(links))
   }
 }

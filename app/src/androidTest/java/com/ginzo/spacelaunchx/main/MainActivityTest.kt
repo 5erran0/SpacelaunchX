@@ -6,6 +6,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.ginzo.spacelaunchx.R
@@ -176,7 +177,7 @@ class MainActivityTest {
           daysFromLaunch = 10,
           launchSuccess = false,
           rocket = Rocket("3", "4", "5"),
-          links = Links("6", "7", "8", "9")
+          links = Links(null, "aa", null, null)
         )
       )
     )
@@ -255,6 +256,11 @@ class MainActivityTest {
 
     onView(withId(R.id.tv_launch_success))
       .check(matches(withText(R.string.unsuccessfully)))
+
+    onView(withId(R.id.mcv_launch_container))
+      .perform(click())
+
+    verify(presenter).onClickLaunchItem(information.launches[0].links)
   }
 
   @Test
@@ -276,7 +282,7 @@ class MainActivityTest {
           daysFromLaunch = -10,
           launchSuccess = null,
           rocket = Rocket("3", "4", "5"),
-          links = Links("6", "7", "8", "9")
+          links = Links("", "", "", "")
         )
       )
     )
@@ -355,6 +361,11 @@ class MainActivityTest {
 
     onView(withId(R.id.tv_launch_success))
       .check(matches(not(isDisplayed())))
+
+    onView(withId(R.id.mcv_launch_container))
+      .perform(click())
+
+    verify(presenter).onClickLaunchItem(information.launches[0].links)
   }
 
   @Test
@@ -378,4 +389,24 @@ class MainActivityTest {
     verify(presenter).getSpaceXInformation()
   }
 
+  @Test
+  fun dialogLinksAll() {
+    runOnUiThread {
+      activity.render(MainViewState.ShowLinksDialog(Links("1", "2", "3", "4")))
+    }
+
+    Thread.sleep(2000) //For the animation
+
+    onView(withId(R.id.wikipedia))
+      .inRoot(isDialog())
+      .check(matches(isDisplayed()))
+
+    onView(withId(R.id.video))
+      .inRoot(isDialog())
+      .check(matches(isDisplayed()))
+
+    onView(withId(R.id.article))
+      .inRoot(isDialog())
+      .check(matches(isDisplayed()))
+  }
 }
