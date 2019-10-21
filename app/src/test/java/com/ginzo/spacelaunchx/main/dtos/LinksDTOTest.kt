@@ -8,10 +8,11 @@ class LinksDTOTest {
 
   @Test
   fun createDTO() {
-    assertEquals(
-      LinksDTO("1", "2", "3", "4"),
-      LinksDTO(Links("1", "2", "3", "4"))
-    )
+    val dto = LinksDTO(Links("1", "2", "3", "4"))
+    assertEquals("1", dto.patch)
+    assertEquals("2", dto.article)
+    assertEquals("3", dto.wikipedia)
+    assertEquals("4", dto.video)
   }
 
   @Test

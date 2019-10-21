@@ -21,4 +21,10 @@
     <string name="wikipedia">Wikipedia</string>
     <string name="article">Space Article</string>
     <string name="video">Youtube Video</string>
+
+    <string name="launch_success">Launch success</string>
+    <string name="launch_year">Launch year</string>
+    <string name="order">Order</string>
+    <string name="filter">Filter</string>
+    <string name="clear">Clear</string>
 </resources>

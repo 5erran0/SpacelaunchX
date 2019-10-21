@@ -20,7 +20,7 @@ class LaunchesDataRepositoryTest {
   fun getLaunches_ok() {
     dataRepository.getLaunches()
 
-    verify(apiRepository).getLaunches()
+    verify(apiRepository).getLaunches(null)
   }
 
 }

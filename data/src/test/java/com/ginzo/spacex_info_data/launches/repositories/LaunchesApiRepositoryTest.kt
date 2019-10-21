@@ -2,6 +2,7 @@ package com.ginzo.spacex_info_data.launches.repositories
 
 import arrow.core.Either
 import com.ginzo.spacex_info_data.launches.api.LaunchesRestApi
+import com.ginzo.spacex_info_domain.entities.LaunchesFilter
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Single
 import org.junit.After
@@ -20,13 +21,13 @@ class LaunchesApiRepositoryTest {
   }
 
   @Test
-  fun getLaunches_ok() {
-    whenever(restApi.getLaunches()).doReturn(Single.just(Response.success(emptyList())))
+  fun getLaunches_filter_ok() {
+    whenever(restApi.getLaunches(any(), any(), any())).doReturn(Single.just(Response.success(emptyList())))
 
-    apiRepository.getLaunches()
+    apiRepository.getLaunches(LaunchesFilter(1, false, "asc"))
       .test()
       .assertValue(Either.right(emptyList()))
 
-    verify(restApi).getLaunches()
+    verify(restApi).getLaunches(1, false, "asc")
   }
 }

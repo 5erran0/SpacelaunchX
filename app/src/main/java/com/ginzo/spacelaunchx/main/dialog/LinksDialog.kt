@@ -14,8 +14,6 @@ import com.ginzo.spacelaunchx.main.dtos.LinksDTO
 import com.ginzo.spacex_info_domain.entities.Links
 
 class LinksDialog : DialogFragment() {
-
-
   companion object {
     private const val ARG_LINKS = "links"
 

@@ -3,16 +3,11 @@ package com.ginzo.spacelaunchx.main
 import androidx.lifecycle.LifecycleOwner
 import arrow.core.Either
 import com.ginzo.spacelaunchx.main.dtos.SpaceXInformationDTO
-import com.ginzo.spacex_info_domain.entities.CompanyInfo
-import com.ginzo.spacex_info_domain.entities.Launch
-import com.ginzo.spacex_info_domain.entities.Links
-import com.ginzo.spacex_info_domain.entities.Rocket
+import com.ginzo.spacex_info_domain.entities.*
+import com.ginzo.spacex_info_domain.entities.LaunchesFilter.Companion.ASC
 import com.ginzo.spacex_info_domain.usecases.GetCompanyInfoUseCase
 import com.ginzo.spacex_info_domain.usecases.GetLaunchesUseCase
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.junit.After
@@ -163,5 +158,37 @@ class MainPresenterTest {
     presenter.onClickLaunchItem(launches[0].links)
 
     verify(view).render(MainViewState.ShowLinksDialog(launches[0].links))
+  }
+
+  @Test
+  fun showFilterDialog() {
+    val filter = LaunchesFilter(null, null, null)
+    presenter.onClickFilter()
+
+    verify(view).render(MainViewState.ShowFilterDialog(filter))
+  }
+
+  @Test
+  fun onFilter_ok() {
+    val filter = LaunchesFilter(null, null, ASC)
+    whenever(getLaunchesUseCase.launches(any())).thenReturn(Single.just(Either.right(launches)))
+
+    presenter.onFilterLaunches(filter)
+
+    verify(view).render(MainViewState.Loading)
+    verify(getLaunchesUseCase).launches(filter)
+    verify(view).render(MainViewState.ShowLaunches(launches))
+  }
+
+  @Test
+  fun onFilter_ko() {
+    val filter = LaunchesFilter(null, null, ASC)
+    whenever(getLaunchesUseCase.launches(any())).thenReturn(Single.just(Either.left(Throwable())))
+
+    presenter.onFilterLaunches(filter)
+
+    verify(view).render(MainViewState.Loading)
+    verify(getLaunchesUseCase).launches(filter)
+    verify(view).render(MainViewState.Error)
   }
 }

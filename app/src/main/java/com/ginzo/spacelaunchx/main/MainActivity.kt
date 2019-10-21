@@ -1,11 +1,13 @@
 package com.ginzo.spacelaunchx.main
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,17 +16,20 @@ import com.ginzo.commons.view.bindView
 import com.ginzo.spacelaunchx.R
 import com.ginzo.spacelaunchx.main.adapter.LaunchesListAdapter
 import com.ginzo.spacelaunchx.main.di.inject
+import com.ginzo.spacelaunchx.main.dialog.FilterDialog
 import com.ginzo.spacelaunchx.main.dialog.LinksDialog
 import com.ginzo.spacex_info_domain.entities.CompanyInfo
+import com.ginzo.spacex_info_domain.entities.LaunchesFilter
 import dagger.BindsInstance
 import dagger.Subcomponent
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity(), MainView, FilterDialog.FilterDialogListener, Toolbar.OnMenuItemClickListener {
 
   @Inject
   lateinit var presenter: MainPresenter
 
+  private val toolbar: Toolbar by bindView(R.id.main_toolbar)
   private val infoContainer: NestedScrollView by bindView(R.id.main_information_container)
   private val companyInfo: TextView by bindView(R.id.main_company_info)
   private val launchesList: RecyclerView by bindView(R.id.main_launches)
@@ -36,6 +41,9 @@ class MainActivity : AppCompatActivity(), MainView {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+
+    toolbar.setOnMenuItemClickListener(this)
+    toolbar.inflateMenu(R.menu.menu_filter)
 
     inject(this)
 
@@ -84,7 +92,35 @@ class MainActivity : AppCompatActivity(), MainView {
           linksDialog.show(supportFragmentManager, "LinksDialog")
         }
       }
+
+      is MainViewState.ShowFilterDialog -> {
+        val filterDialog = FilterDialog.newInstance(state.filter)
+        filterDialog.show(supportFragmentManager, "FilterDialog")
+      }
+
+      is MainViewState.ShowLaunches -> {
+        progressBar.visibility = View.GONE
+        retry.visibility = View.GONE
+
+        launchesListAdapter.launches = state.launches
+
+        infoContainer.visibility = View.VISIBLE
+      }
     }
+  }
+
+  override fun onMenuItemClick(item: MenuItem): Boolean {
+    when (item.itemId) {
+      R.id.filter -> {
+        presenter.onClickFilter()
+        return true
+      }
+    }
+    return false
+  }
+
+  override fun onFilterClicked(filter: LaunchesFilter) {
+    presenter.onFilterLaunches(filter)
   }
 
   private fun formattedCompanyInfoText(companyInfo: CompanyInfo): String {
